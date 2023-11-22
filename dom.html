@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    number1: <input type="text" id="name">
+    number2: <input type="text" id="age">
+    <button onclick="myFunction()">Click me</button>
+
+    <p id="demo"></p>
+  
+    <script>
+        function myFunction() {
+            let number1 = document.getElementById("name").value
+            let number2 = document.getElementById("age").value
+            document.getElementById("demo").innerHTML = Number(number1) + Number(number2)
+            
+        }
+    </script>
+</body>
+</html>
