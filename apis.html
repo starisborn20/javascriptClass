@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="output"></div>
+
+    <img src="placeholder.png" id="productImage" alt="">
+
+    <script>
+        fetch("https://dummyjson.com/products/3")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            let output = document.getElementById("output")
+            output.innerHTML +="Brand: " + data.brand + "<br>"
+            output.innerHTML += "Title: " + data.title + "<br>"
+
+            let productImage = document.getElementById("productImage")
+            productImage.src = data.thumbnail
+        })
+    </script>
+    
+</body>
+</html>
