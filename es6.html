@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: red;
+        }
+        .change {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <p class="para1"></p>
+    <p class="para1"></p>
+    <p class="para1"></p>
+    <p class="para1"></p>
+    <p class="para1"></p>
+    <button onclick="changeCss()">Click me</button>
+    <button onclick="changeBack()">Change Back</button>
+
+    <script>
+        // const name = (name) => {
+        //     console.log("Hello " + name)
+        // }
+
+        // name("Mike")
+
+        const para = document.querySelectorAll("p")
+        for(let i = 0; i < para.length; i++) {
+            para[i].innerHTML = "Hello"
+        }
+
+        const changeCss = () => {
+            const body = document.querySelector("body")
+            // body.style.backgroundColor = "blue"
+            body.classList.add("change")
+        }
+
+        const changeBack = () => {
+            const body = document.querySelector("body")
+            body.style.backgroundColor = "red"
+        }
+    </script>
+    
+</body>
+</html>

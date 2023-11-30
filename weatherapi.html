@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Weather App</h1>
+    <div class="search">
+        <input type="text" id="cityInput" placeholder="Enter City name...">
+        <button id="search">Search</button>
+    </div>
+
+    <div id="weatherInfo"></div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const apiKey = "7g5aVm3HHkYl2B0ih4u9hpVUS64i7xHW"
+            const city = document.getElementById("cityInput")
+            const searchBtn = document.getElementById("search")
+            const weatherInfo = document.getElementById("weatherInfo")
+
+            searchBtn.addEventListener("click", function() {
+                const input = city.value.trim()
+                if (input == '') {
+                    alert("Please input city name")
+                    return
+                }
+
+                fetch(`https://api.tomorrow.io/v4/weather/realtime?location=${input}&apikey=${apiKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    const cityName = data.location.name;
+                    const temperature = data.data.values.temperature
+                    const humidity = data.data.values.humidity
+
+                    weatherInfo.innerHTML = `
+                            <h2> Weather in ${cityName} </h2>
+                            <h3> Temperature is ${temperature} </h3>
+                            <h3> Humidity is ${humidity} </h3>
+                    `
+                })
+            })
+        })
+    </script>
+</body>
+</html>
