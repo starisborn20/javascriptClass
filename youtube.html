@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <input type="text" id="searchQuery" placeholder="Enter a search here..">
+        <button id="btn">Search</button>
+    </div>
+    <div id="video-container">
+
+    </div>
+
+    <script>
+       let btn = document.getElementById("btn")
+       let searchQuery = document.getElementById("searchQuery")
+
+       const API_KEY = "AIzaSyCVW96ig8NAn1Waiy2V9yIgAgWn-Jn6Zxg"
+       let maxResult = 10
+       
+       btn.addEventListener("click", fetchVideos)
+
+       async function fetchVideos() {
+        const search = searchQuery.value;
+        if (search.trim() == "") {
+            alert("Please enter a search query")
+            return
+        }
+        try{
+
+            const response = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&q=${search}&type=video&part=snippet&maxResults=${maxResult}`)
+            const data = await response.json()
+    
+            const videoContainer = document.getElementById("video-container") 
+    
+            data.items.forEach((item) => {
+                const videoId = item.id.videoId
+    
+                const iframe = document.createElement("iframe")
+                iframe.src=`https://www.youtube.com/embed/${videoId}`
+                iframe.allowFullscreen = true
+    
+                videoContainer.appendChild(iframe)
+            })
+        } catch(error) {
+            console.error("Error fetching data: ", error)
+        }
+       }
+    </script>
+    
+</body>
+</html>

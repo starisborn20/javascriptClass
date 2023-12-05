@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        function fetchData() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const data = {message: "Data fetched successfully"}
+                    resolve(data)
+                }, 5000)
+            })
+        }
+
+        function performTask() {
+            console.log("Performing other tasks while waiting for the API")
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log("Other task completed")
+                    resolve()
+                }, 2000)
+            })
+        }
+
+        async function fetchAndDisplayData() {
+            try {
+                console.log("Fetching data...")
+                await performTask()
+                const result = await fetchData()
+
+                console.log("Data: ", result)
+
+                console.log("Data Fetched successfully")
+            }
+            catch(error) {
+                console.error("Error in fetching data: ", error)
+            }
+        }
+
+        fetchAndDisplayData()
+    </script>
+</body>
+</html>
